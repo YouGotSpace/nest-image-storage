@@ -59,8 +59,8 @@ export class AwsS3Strategy extends BaseImageStorageStrategy {
 		thumbImage: sharp.Sharp,
 		ext: string
 	): Promise<{
-		fullUrl: string;
-		thumbUrl: string;
+		url: string;
+		thumbnailUrl: string;
 		fileSize: number;
 	}> {
 		const timestamp = Date.now();
@@ -86,8 +86,8 @@ export class AwsS3Strategy extends BaseImageStorageStrategy {
 		]);
 
 		return {
-			fullUrl,
-			thumbUrl,
+			url: fullUrl,
+			thumbnailUrl: thumbUrl,
 			fileSize: fullBuffer.length,
 		};
 	}

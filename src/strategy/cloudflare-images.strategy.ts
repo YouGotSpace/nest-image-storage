@@ -24,8 +24,8 @@ export class CloudflareImagesStrategy extends BaseImageStorageStrategy {
 		_thumbImage: sharp.Sharp,
 		ext: string
 	): Promise<{
-		fullUrl: string;
-		thumbUrl: string;
+		url: string;
+		thumbnailUrl: string;
 		fileSize: number;
 	}> {
 		const processedBuffer = await fullImage.toBuffer();
@@ -55,8 +55,8 @@ export class CloudflareImagesStrategy extends BaseImageStorageStrategy {
 			}
 
 			return {
-				fullUrl: this.getPublicUrl(data.id, "full"),
-				thumbUrl: this.getPublicUrl(data.id, "thumb"),
+				url: this.getPublicUrl(data.id, "full"),
+				thumbnailUrl: this.getPublicUrl(data.id, "thumb"),
 				fileSize: data.size,
 			};
 		} catch (error: any) {

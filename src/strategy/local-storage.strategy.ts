@@ -29,8 +29,8 @@ export class LocalStorageStrategy extends BaseImageStorageStrategy {
 		thumbImage: sharp.Sharp,
 		ext: string
 	): Promise<{
-		fullUrl: string;
-		thumbUrl: string;
+		url: string;
+		thumbnailUrl: string;
 		fileSize: number;
 	}> {
 		const id = randomUUID();
@@ -53,8 +53,8 @@ export class LocalStorageStrategy extends BaseImageStorageStrategy {
 		const stats = fs.statSync(fullPath);
 
 		return {
-			fullUrl: this.getPublicUrl(filenameBase, "full"),
-			thumbUrl: this.getPublicUrl(thumbFilename, "thumb"),
+			url: this.getPublicUrl(filenameBase, "full"),
+			thumbnailUrl: this.getPublicUrl(thumbFilename, "thumb"),
 			fileSize: stats.size,
 		};
 	}

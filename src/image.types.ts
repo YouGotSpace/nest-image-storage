@@ -52,11 +52,14 @@ export type ImageProcessingResult =
 	| ImageValidationError;
 
 export interface UploadImageResult {
-	fullUrl: string;
-	thumbUrl: string;
+	url: string;
+	thumbnailUrl: string;
 	mimeType: string;
 	fileSize: number;
+	filename: string;
+	thumbnailFilename: string;
 	originalFilename: string;
 	width: number;
 	height: number;
+	metadata: Record<string, unknown>;
 }

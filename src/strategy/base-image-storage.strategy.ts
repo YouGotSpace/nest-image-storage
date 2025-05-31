@@ -140,14 +140,19 @@ export abstract class BaseImageStorageStrategy extends ImageStorageStrategy {
 		fileSize: number,
 		ext: string
 	): UploadImageResult {
+		const filename = fullUrl.split("/").pop();
+		const thumbnailFilename = thumbUrl.split("/").pop();
 		return {
-			fullUrl,
-			thumbUrl,
+			url: fullUrl,
+			thumbnailUrl: thumbUrl,
 			mimeType: `image/${ext}`,
 			fileSize,
 			originalFilename: file.originalname,
 			width: metadata.width || 0,
 			height: metadata.height || 0,
+			filename: filename || "",
+			thumbnailFilename: thumbnailFilename || "",
+			metadata: { ...metadata },
 		};
 	}
 
@@ -171,8 +176,8 @@ export abstract class BaseImageStorageStrategy extends ImageStorageStrategy {
 		);
 
 		return this.createUploadResult(
-			storageResult.fullUrl,
-			storageResult.thumbUrl,
+			storageResult.url,
+			storageResult.thumbnailUrl,
 			file,
 			metadata,
 			storageResult.fileSize,
@@ -185,8 +190,8 @@ export abstract class BaseImageStorageStrategy extends ImageStorageStrategy {
 		thumbImage: sharp.Sharp,
 		ext: string
 	): Promise<{
-		fullUrl: string;
-		thumbUrl: string;
+		url: string;
+		thumbnailUrl: string;
 		fileSize: number;
 	}>;
 
